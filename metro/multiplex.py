@@ -7,6 +7,7 @@ import pandas as pd
 import os
 import numpy as np
 #import ita
+from math import *
 
 class multiplex:
     '''
@@ -26,6 +27,74 @@ class multiplex:
     # -------------------------------------------------------------------------
     # NETWORK CONSTRUCTION	
     # -------------------------------------------------------------------------
+    def haversine(self,lon1, lat1, lon2, lat2, R=6357):
+        """
+        Compute distance between two points
+        """
+        lat1 = radians(lat1)
+        lat2 = radians(lat2)
+        lon1 = radians(lon1)
+        lon2 = radians(lon2)
+
+        dlon = lon2 - lon1
+        dlat = lat2 - lat1
+
+        a = sin(dlat / 2) ** 2 + cos(lat1) * cos(lat2) * sin(dlon / 2) ** 2
+        c = 2 * atan2(sqrt(a), sqrt(1 - a))
+
+        distance = R * c
+        return distance
+
+
+    def centorid(pos1: tuple, pos2: tuple) -> tuple:
+            """
+            pos1: tuple (lat, lon)
+            pos2: tuple (lat, lon)
+
+            return: (avg_lat,avg_lon)
+            """
+
+            avg_lat = (pos1[0]+pos2[0])/2
+            avg_lon = (pos1[1]+pos2[1])/2
+            return (avg_lat, avg_lon)
+
+
+    def spatial_join2(self, layer1, layer2, distance_threshold: int, transfer_speed, base_cost, both: bool = True):
+        """
+        
+        """
+
+        transfer_layer_name = layer1 + '--' + layer2
+        self.layers.append(transfer_layer_name)
+
+        layer1_copy = self.layers_as_subgraph([layer1])	
+        layer2_copy = self.layers_as_subgraph([layer2])
+
+        edges_added = 0
+
+        for n in layer1_copy.node:
+            for m in layer2_copy.node:
+                dist = int(self.haversine(layer1_copy.node[n]['lon'], layer1_copy.node[n]['lat'], layer2_copy.node[m]['lon'], layer2_copy.node[m]['lat'])*1000)
+                if dist <= distance_threshold:
+                    self.G.add_edge(n, m, 
+                            layer = transfer_layer_name,
+                            weight = 0,
+                            dist_km = dist, 
+                            free_flow_time_m = dist / transfer_speed + base_cost,
+                            uniform_time_m = dist / transfer_speed + base_cost)
+            
+                    bidirectional = ""
+                    if both: 
+                        self.G.add_edge(m, n, 
+                            layer = transfer_layer_name,
+                            weight = 0,
+                            dist_km = dist, 
+                            free_flow_time_m = dist / transfer_speed + base_cost,
+                            uniform_time_m = dist / transfer_speed + base_cost) # assumes bidirectional
+                        bidirectional = "bidirectional "
+                    edges_added += 1
+
+        print ('Added ' + str(edges_added) + ' ' + bidirectional + 'transfers between '  + layer1 + ' and ' + layer2 + '.')
 
     def add_layers(self, layer_dict):
         '''
