@@ -3,7 +3,7 @@
 Social Network Analysis Project
 
 ### Paper
-The paper associated to this project is available [here](https://en.wikipedia.org/wiki/Haversine_formula)
+The paper associated to this project is available [here](https://github.com/MatteoFasulo/Paris-Euler/blob/main/Multiplex%20Network%20Analysis.pdf)
 
 ### Multiplex Class
 The `Multiplex` Class written in python is a nx.Graph wrapper for creating multi-layer networks and includes:
