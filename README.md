@@ -13,8 +13,8 @@ The `Multiplex` Class written in python is a nx.Graph wrapper for creating multi
 * Summarizing a multilayer network
 
 ### Maps
-[Stations and roads](https://matteofasulo.github.io/Paris-Euler/france.html)
-[Public transport lines](https://matteofasulo.github.io/Paris-Euler/france_transport.html)
+* [Stations and roads](https://matteofasulo.github.io/Paris-Euler/france.html)
+* [Public transport lines](https://matteofasulo.github.io/Paris-Euler/france_transport.html)
 > **Tip:** Our map can be modified using the draw icons in top-left corner and then exported as GeoJSON file through the `export` button
 
 ### Datasets
