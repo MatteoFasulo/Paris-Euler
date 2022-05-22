@@ -6,7 +6,7 @@ Social Network Analysis Project
 The paper associated to this project is available [here](https://en.wikipedia.org/wiki/Haversine_formula)
 
 ### Multiplex Class
-The Multiplex Class written in python is a nx.Graph wrapper for creating multi-layer networks and includes:
+The `Multiplex` Class written in python is a nx.Graph wrapper for creating multi-layer networks and includes:
 * Adding layers to a multiplex
 * Linking the layers by proximity using [Haversine formula](https://en.wikipedia.org/wiki/Haversine_formula).
 * Writing networks back to NetworkX
@@ -15,7 +15,7 @@ The Multiplex Class written in python is a nx.Graph wrapper for creating multi-l
 ### Maps
 [Stations and roads](https://matteofasulo.github.io/Paris-Euler/france.html)
 [Public transport lines](https://matteofasulo.github.io/Paris-Euler/france_transport.html)
-> **Tip:** Our map can be modified using the draw icons in top-left corner and then exported as GeoJSON file through the **export** button
+> **Tip:** Our map can be modified using the draw icons in top-left corner and then exported as GeoJSON file through the `export` button
 
 ### Datasets
 - The GeoJSON file is available at [ComplexNetTSP GitHub](https://github.com/ComplexNetTSP/MultilayerParis)
