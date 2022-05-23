@@ -18,7 +18,7 @@ The `Multiplex` Class written in python is a nx.Graph wrapper for creating multi
 > **Tip:** Our map can be modified using the draw icons in top-left corner and then exported as GeoJSON file through the `export` button
 
 ### Datasets
-- The GeoJSON file is available at [ComplexNetTSP GitHub](https://github.com/ComplexNetTSP/MultilayerParis)
+- The GeoJSON file is available at [ComplexNetTSP GitHub](https://github.com/ComplexNetTSP/MultilayerParis) or in `geojson` folder.
 
 
 ### Libraries
